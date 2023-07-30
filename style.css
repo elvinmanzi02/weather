@@ -35,6 +35,23 @@ body {
     margin-top: 10%;
 }
 
+.input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+}
+
+.input button {
+    border-radius: 5px;
+    border: 1px solid grey;
+    outline: none;
+}
+
+.input button:active {
+    background-color: rgb(167, 155, 155);
+}
+
 #city {
     border-radius: 10px;
     outline: none;
@@ -44,12 +61,10 @@ body {
     width: 150px;
     padding: 4px;
     font-size: 10px;
-    background-color: aliceblue;
+    background-color: rgb(176, 182, 187);
 }
 
-label {
-    color: black;
-}
+
 
 .output {
     display: flex; 

@@ -17,7 +17,6 @@ async function getWeather() {
 
         const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=154e5dff6dc142acbaf112503232707&q=${location}&aqi=yes`, { mode: 'cors' });
         const data = await response.json();
-        console.log(data);
 
         const imgDescription = data.current.condition.text;
         const imgUrl = data.current.condition.icon;
@@ -27,11 +26,13 @@ async function getWeather() {
         body.style.backgroundPosition = "center";
         body.style.backgroundSize = "cover";
         body.style.backgroundAttachment = "fixed";
-        body.style.backgroundSize = "50px";
+        body.style.backgroundSize = "10%";
 
         const country = data.location.country;
         const locationElement = document.querySelector(".location");
+        
         locationElement.textContent =  `${location}, ${country}`;
+  
 
 
         const localTime = document.querySelector(".time");
@@ -58,11 +59,17 @@ async function getWeather() {
 
 city.addEventListener("keypress", function (event) {
     if (event.keyCode === 13) {
-
         getWeather();
         city.value = "";
     }
 });
+
+const searchBtn =document.querySelector("#searchBtn");
+searchBtn.addEventListener("click", () => {
+    getWeather();
+    city.value = "";
+})
+
 
 document.addEventListener("DOMContentLoaded", () => {
     getWeather();  
