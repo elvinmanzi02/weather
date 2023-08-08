@@ -21,17 +21,17 @@ async function getWeather() {
         const imgDescription = data.current.condition.text;
         const imgUrl = data.current.condition.icon;
         const time = data.location.localtime;
+        const mainElement = document.querySelector("main");
+        mainElement.style.backgroundImage = `url(${imgUrl})`;
+        mainElement.style.backgroundPosition = "center";
+        mainElement.style.backgroundSize = "50px";
+        
 
-        body.style.backgroundImage = `url(${imgUrl})`;
-        body.style.backgroundPosition = "center";
-        body.style.backgroundSize = "cover";
-        body.style.backgroundAttachment = "fixed";
-        body.style.backgroundSize = "10%";
 
         const country = data.location.country;
         const locationElement = document.querySelector(".location");
         
-        locationElement.textContent =  `${location}, ${country}`;
+        locationElement.innerHTML =  `<b>${location}<b>, <b>${country}<b> <br>`;
   
 
 
@@ -39,7 +39,7 @@ async function getWeather() {
         localTime.textContent  = time;
 
         const descriptionElement = document.querySelector(".imgDescription");
-        descriptionElement.textContent = imgDescription;
+        descriptionElement.innerHTML = `${imgDescription} <br> <br>`;
 
         const celciusElement = document.querySelector(".celcius");
         const celcius = data.current.temp_c;
