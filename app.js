@@ -1,4 +1,5 @@
-const body = document.querySelector("body");
+document.addEventListener("DOMContentLoaded", () => {
+
 const city = document.querySelector("#city");
 
 city.value = "Kigali";
@@ -15,7 +16,7 @@ async function getWeather() {
 
     try {
 
-        const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=154e5dff6dc142acbaf112503232707&q=${location}&aqi=yes`, { mode: 'cors' });
+        const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=7302873955924156a9d151922230908&q=${location}&aqi=yes`, { mode: 'cors' });
         const data = await response.json();
 
         const imgDescription = data.current.condition.text;
@@ -25,21 +26,23 @@ async function getWeather() {
         mainElement.style.backgroundImage = `url(${imgUrl})`;
         mainElement.style.backgroundPosition = "center";
         mainElement.style.backgroundSize = "50px";
+        console.log(data);
         
 
 
         const country = data.location.country;
         const locationElement = document.querySelector(".location");
+        const upperLocation = location[0].toUpperCase() + location.slice(1);
         
-        locationElement.innerHTML =  `<b>${location}<b>, <b>${country}<b> <br>`;
+        locationElement.innerHTML =  `<b>${upperLocation}<b>`;
   
 
 
         const localTime = document.querySelector(".time");
-        localTime.textContent  = time;
+        localTime.textContent  = `${time}`;
 
         const descriptionElement = document.querySelector(".imgDescription");
-        descriptionElement.innerHTML = `${imgDescription} <br> <br>`;
+        descriptionElement.innerHTML = `It is ${imgDescription}!<br> <br>`;
 
         const celciusElement = document.querySelector(".celcius");
         const celcius = data.current.temp_c;
@@ -70,8 +73,6 @@ searchBtn.addEventListener("click", () => {
     city.value = "";
 })
 
-
-document.addEventListener("DOMContentLoaded", () => {
     getWeather();  
     city.value = "";
 });
