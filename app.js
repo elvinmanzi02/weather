@@ -16,7 +16,7 @@ async function getWeather() {
 
     try {
 
-        const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=7302873955924156a9d151922230908&q=${location}&aqi=yes`, { mode: 'cors' });
+        const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=7302873955924156a9d151922230908&q=${location}&aqi=yes`, { mode: 'cors' });
         const data = await response.json();
 
         const imgDescription = data.current.condition.text;
