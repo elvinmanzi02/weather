@@ -30,10 +30,11 @@ body {
 }
 
 main {
-    width: 95vw;
+    width: 72vw;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    border-radius: 25%;
 }
 
 .weatherIcon {
@@ -50,6 +51,20 @@ main {
     gap: 2px;
 }
 
+#celciusBtn, #fahneitBtn {
+    width: 80px;
+    font-size: 20px;
+    border-radius: 5px;
+    height: 40px;
+    box-shadow: 2px 0px 4px 0px black;
+    border: 0px;
+    font-weight: bold   ;
+}
+
+#celciusBtn:active, #fahneitBtn:active {
+    box-shadow: 1px 0px 2px 0px black;
+}
+
 #city, #searchBtn {
     height: 50px;
     width: 300px;
@@ -60,6 +75,17 @@ main {
     outline: none;
     border: 0px;
     box-shadow: 1px 1px 15px black;
+}
+.degree {
+    font-size: 45px;
+    display: flex;
+    justify-content: center;
+    gap: 1px;
+    align-items: center;
+    margin: 0px;
+    padding: 0px;
+    height: 50px;
+    margin-top: 25px;
 }
 
 #searchBtn {
@@ -76,7 +102,7 @@ main {
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    width: 400px;
+    width: 500px;
     height: 300px;
     font-size: 30px;
     border-radius: 40px;
@@ -85,6 +111,16 @@ main {
     margin: 20px;
     text-align: center;
     padding-top: 20px;
+}
+
+.otherInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    font-size: 20px;
+    align-items: center;
+    margin-top: 10px;
 }
 
 .footer {

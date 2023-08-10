@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
 
 const city = document.querySelector("#city");
+const celciusBtn = document.querySelector("#celciusBtn");
+const fahneitBtn = document.querySelector("#fahneitBtn");
 
 city.value = "Kigali";
 
@@ -22,6 +24,9 @@ async function getWeather() {
         const imgDescription = data.current.condition.text;
         const imgUrl = data.current.condition.icon;
         const time = data.location.localtime;
+        const humidity = data.current.humidity;
+        const pressure = data.current.pressure_in;
+        const wind = data.current.wind_degree;
         const mainElement = document.querySelector("main");
         mainElement.style.backgroundImage = `url(${imgUrl})`;
         mainElement.style.backgroundPosition = "center";
@@ -30,11 +35,14 @@ async function getWeather() {
         
 
 
-        const country = data.location.country;
         const locationElement = document.querySelector(".location");
         const upperLocation = location[0].toUpperCase() + location.slice(1);
         
         locationElement.innerHTML =  `<b>${upperLocation}<b>`;
+
+        document.querySelector(".humidityDisplay").innerHTML = `Humidity: ${humidity}<b>%</b>  /`;
+        document.querySelector(".pressureDisplay").innerHTML = ` Pressure: ${pressure}<b>inHg</b>  /`;
+        document.querySelector(".windDisplay").innerHTML = `  Wind: ${wind}<b>&#176</b>`;
   
 
 
@@ -45,12 +53,18 @@ async function getWeather() {
         descriptionElement.innerHTML = `It is ${imgDescription}!<br> <br>`;
 
         const celciusElement = document.querySelector(".celcius");
+        celciusElement.classList.add("degree");
         const celcius = data.current.temp_c;
-        celciusElement.innerHTML = `Celsius: ${celcius} <p style = " color : red ; padding : 0px ; margin : 0px ; width : 5px ; display : -webkit-inline-box">&#176;C </p>`;
-
-        const fahrenheitElement = document.querySelector(".Fahneit");
         const fahrenheit = data.current.temp_f;
-        fahrenheitElement.innerHTML = `Fahrenheit: ${fahrenheit} <p style = " color : red ; padding : 0px ; margin : 0px ; width : 5px ; display : -webkit-inline-box">&#176;F </p>`;
+        celciusElement.innerHTML = `<p style = "font-size : 80px ; color : red ; padding : 0px ; margin : 0px">${celcius}</p>&#176;C`;
+
+        celciusBtn.addEventListener("click", () => {
+            celciusElement.innerHTML = `<p style = "font-size : 80px ; color : red ; padding : 0px ; margin : 0px">${celcius}</p> &#176;C`;
+        })
+
+        fahneitBtn.addEventListener("click", () => {
+            celciusElement.innerHTML = `<p style = "font-size : 80px; color : red ; padding : 0px ; margin : 0px">${fahrenheit}</p> &#176;F`;
+        })
 
     } catch (error) {
         console.log("location not found", error);
